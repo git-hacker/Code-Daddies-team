@@ -1,0 +1,73 @@
+/* - - - - - - - - - - - TOP BAR */
+.top-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 30rpx;
+  padding: 15rpx;
+  background-color: #FFC43D;
+  position: relative;
+  height: 60rpx;
+}
+
+.user-avatar {
+  border-radius: 50%;
+  width: 120rpx;
+  height: 120rpx;
+  margin: 5rpx 15rpx;
+  position: absolute;
+
+  bottom: -65rpx;
+  left: 10rpx;
+}
+
+.journey-status {
+  position: absolute;
+  right: 90rpx;
+  margin: 5rpx 15rpx; 
+}
+
+/* - - - - - - - - - - - - - - MAP VIEW */
+
+.city-map {
+  background-color: black;
+  height: 65vh;
+}
+
+/* - - - - - - - - - - - - - - - - STATS */
+
+.user-stats {
+  width: 100%;
+  height: 150rpx;
+  display: flex;
+  flex-direction: row; 
+}
+
+.stat {
+  background-color: aqua;
+  width: 50%;
+  border: 2rpx solid black;
+  font-size: 30rpx;
+  font-weight: bold;
+  text-align: center;
+  padding: 10rpx;
+
+}
+
+/* - - - - - - - - - - - - FONT COLORS */
+
+.purplefont {
+  color: #3A074F;
+}
+
+.whitefont {
+  color: white;
+}
+
+.goldfont {
+  color: #FFC43D;
+}
+
+.redfont {
+  color: #B80C09;
+}

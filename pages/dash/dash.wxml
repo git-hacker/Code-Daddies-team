@@ -1,0 +1,20 @@
+
+<view class="page-wrapper">
+  <view class="top-bar purplefont">
+    <image class="user-avatar" src="../../assets/images/frida.jpg"/>
+    <view class="journey-status">
+      <text>Status: American Ninja Warrior</text>
+    </view>
+  </view>
+  <view class="city-map whitefont">
+    <text>THIS THE MAP</text>
+  </view>
+  <view class="user-stats">
+    <view class="stat">
+      <text class="purplefont">% of Chengdu unlocked</text>
+    </view>
+    <view class="stat">
+      <text class="purplefont">Landmarks unlocked</text>
+    </view>
+  </view>
+</view>
