@@ -1,12 +1,30 @@
 {
   "pages":[
+    "pages/dash/dash",
     "pages/index/index",
     "pages/logs/logs"
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarBackgroundColor": "#3A074F",
+    "navigationBarTitleText": "Journey Into Chengdu",
+    "navigationBarTextStyle":"white"
+  },
+  "tabBar": {
+    "color": "white",
+    "selectedColor": "#B80C09",
+    "backgroundColor": "##3A074F",
+    "borderStyle": "white",
+    "list": [{
+        "pagePath": "pages/index/index",
+        "iconPath": "assets/icons/journey-grey.png",
+        "selectedIconPath": "assets/icons/journey-selected.png",
+        "text": "Journey"
+      },{
+        "pagePath": "pages/dash/dash",
+        "iconPath": "assets/icons/profile-grey.png",
+        "selectedIconPath": "assets/icons/profile-selected.png",
+        "text": "Profile"
+    }]
   }
 }
