@@ -12,11 +12,10 @@
 
 .user-avatar {
   border-radius: 50%;
-  width: 120rpx;
-  height: 120rpx;
-  margin: 5rpx 15rpx;
+  width: 130rpx;
+  height: 130rpx;
+  margin: 5rpx 20rpx;
   position: absolute;
-
   bottom: -65rpx;
   left: 10rpx;
 }
