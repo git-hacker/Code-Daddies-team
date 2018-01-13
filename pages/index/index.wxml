@@ -1,0 +1,3 @@
+<!--index.wxml-->
+
+  <map markers="{{ markers }}" latitude="23.099994" longitude="113.324520" show-location style="width: 100%; height: 500px;" scale="15"> </map>
