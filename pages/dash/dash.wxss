@@ -19,20 +19,15 @@
 /* - - - - - - - - - - - - - -STATUS BADGE */
 
 .status{
-  /* background-color: #3A074F; */
-  /* background-image: url('../../assets/images/backdrop.png'); */
-  height: 75vh;
+  height: 90vh;
   display: flex;
   position: relative;
-  /* justify-content: center;
-  align-content: center; */
-  /* flex-direction: column; */
+  text-align: center;
 }
-
 
 .user-avatar {
   position: absolute;
-  top: 20rpx;
+  top: 50rpx;
   bottom: 0rpx;
   left: 0;
   right: 0;
@@ -52,10 +47,10 @@
   top: 220rpx;
   right: 0rpx;
   left:0rpx;
-  height: 500rpx;
-  width: 500rpx;
+  height: 450rpx;
+  width: 450rpx;
   margin: 0 auto;
-  /* z-index: 2; */
+  margin-top: 50rpx;
 }
 
 .backdrop {
@@ -71,17 +66,32 @@
   height: 150rpx;
   display: flex;
   flex-direction: row; 
+  background-color: #3A074F;
 }
 
 .stat {
-  background-color: aqua;
-  width: 50%;
-  border: 2rpx solid black;
-  font-size: 30rpx;
+  /* background-color: aqua; */
+  width: 100%;
+  /* border: 2rpx solid black; */
+  font-size: 20rpx;
   font-weight: bold;
-  text-align: center;
   padding: 10rpx;
+  position: absolute; 
+  bottom: 70rpx;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+}
 
+.percent {
+  width: 200rpx;
+  height: 200rpx;
+  margin: 0 auto;
+  padding: 20rpx;
+}
+
+.percent-num{
+  font-size: 70rpx;
 }
 
 /* - - - - - - - - - - - - FONT COLORS */

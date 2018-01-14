@@ -7,7 +7,8 @@ Page({
   data: {
     percentOfChengduExplored:'', 
     landmarksUnlocked:'', 
-    totalLandmarks: ''
+    totalLandmarks: '', 
+    userLevel:''
   },
   /**
    * 生命周期函数--监听页面加载
