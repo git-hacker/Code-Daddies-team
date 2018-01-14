@@ -8,7 +8,7 @@
   padding: 15rpx;
   background-color: #FFC43D;
   position: relative;
-  height: 100rpx;
+  height: 80rpx;
   /* text-align: center; */
 }
 

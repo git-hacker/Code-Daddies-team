@@ -1,0 +1,45 @@
+/* pages/intro/intro.wxss */
+
+.slides {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  flex-direction: column;
+  background-color: #B80C09;
+}
+
+
+/* - - - - - - - - FIRST SLIDE */
+ .first {
+  background-color: #B80C09;
+} 
+
+.logo {
+  width: 500rpx;
+  height: 500rpx;
+  margin: 0 auto;
+  /* position: absolute; */
+  /* top: 400rpx; */
+}
+
+.slide-text{
+  color: white;
+  width: 350rpx;
+  text-align: center;
+  font-size: 25rpx;
+  padding-top: 50rpx;
+  font-weight: bold;
+}
+
+/* - - - -- - - - - - SECOND SLIDE */
+
+.screenshot {
+  width: 533rpx;
+  height: 900rpx;
+}
+
+.start-text{
+  color: white;
+}
