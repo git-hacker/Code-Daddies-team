@@ -37,7 +37,7 @@ Page({
 
     let page = this
     // this.setData({markers: markers})
-
+    this.setMapCenterAsUsersCurrentLocation()
     console.log(fogs)
     wx.request({
       method: 'get',
@@ -61,12 +61,22 @@ Page({
         }
         console.log(res.data)
         page.setData({
-          markers: markerFogs
+          markers: markerFogs,
         });
       }
     })
-      setInterval(this.postCurrentLocation, 5000)
+    setInterval(this.postCurrentLocation, 5000)
+  },
 
+  setMapCenterAsUsersCurrentLocation: function(lat, long) {
+    console.log('FUCK')
+    this.setData({
+      map: {
+        latitude: lat,
+        longitude: long
+      }
+    })
+    console.log(this.data.map)
   },
 
   postCurrentLocation: function() {
@@ -90,16 +100,13 @@ Page({
     let page = this
 
     wx.getLocation({
-      type: 'wgs84',
       success: function (res) {
+        type: 'wgs84',
         console.log("Here's the response data: ")
-        console.log(res)
         let latitude = res.latitude
         let longitude = res.longitude
-        let accuracy = res.accuracy
-        console.log("Your location is: ")
-        console.log("Lat:", latitude)
-        console.log("Long: ", longitude)
+
+        page.setMapCenterAsUsersCurrentLocation(latitude, longitude)
         page.setData({
           userLocation: {
             latitude: latitude,
@@ -112,14 +119,4 @@ Page({
       }
     })
   },
-
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true,
-    })
-  }
 })
