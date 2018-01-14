@@ -9,21 +9,17 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     map: {
-        latitude: 0,
-        longitude: 0,
+        latitude: 30.575614,
+        longitude: 104.055387,
         accuracy: 0,
         showlocation: true,
     },
-    markers: [
-      { 
-        iconPath: "jpeg.png", 
-        id: 0, 
-        latitude: 23.099994, longitude: 113.324520, 
-        width: 20, 
-        height: 20, 
-        alpha: .5,
-      }
-    ],
+    userLocation: {
+      latitude: 0,
+      longitude: 0,
+    },
+    fogs: [ ],
+    markers: [ ],
   },
   //事件处理函数
   bindViewTap: function() {
@@ -37,58 +33,86 @@ Page({
   // show user marker on current location,
 
   onLoad: function () {
-    this.getLocation()
-    
-    
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
+    let fogs = this.data.fogs
+
+    let page = this
+    // this.setData({markers: markers})
+
+    console.log(fogs)
+    wx.request({
+      method: 'get',
+      url: app.globalData.baseUrl + app.globalData.getUrl,
+      success: function (res) {
+        let markerFogs = [];
+        console.log("Please wait I'm extremely slow");
+        for(var i = 0; i < res.data.length; i++) {
+          console.log(res.data[i]);
+          if(!res.data[i].visible) {
+            markerFogs.push({
+              id: res.data[i].id,
+              longitude: res.data[i].longitude,
+              latitude: res.data[i].latitude,
+              iconPath: "../../assets/images/fog.png",
+              width: 75,
+              height: 90,
+              anchor: { x: 0.5, y: 0.5 }
+            })
+          }
         }
-      })
-    }
+        console.log(res.data)
+        page.setData({
+          markers: markerFogs
+        });
+      }
+    })
+      setInterval(this.postCurrentLocation, 5000)
+
   },
 
-  getLocation: function() {
-    let page = this
-    type: 'gcj02'
-    wx.getLocation({
-      success: function (res) {
-      let latitude = res.latitude
-      let longitude = res.longitude
-      let accuracy = res.accuracy
-      console.log("Your location is: ")
-      console.log("Lat:", latitude)
-      console.log("Long: ", longitude)
-      page.setData({
-        map: {
-          latitude: latitude,
-          longitude: longitude,
-          accuracy: accuracy
-        }
-      })
-    }
+  postCurrentLocation: function() {
+    // POST request to send those coordinates
+    this.getUserCurrentLocation();
+    console.log("User's current location: ")
+    console.log(this.data.userLocation)
+    wx.request({
+      method: 'post',
+      data: this.data.userLocation,
+      url: app.globalData.baseUrl + app.globalData.postUrl,
+      success: function(res) {
+        console.log(res)
+      }
     })
   },
+
+
+  
+  getUserCurrentLocation: function () {
+    let page = this
+
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (res) {
+        console.log("Here's the response data: ")
+        console.log(res)
+        let latitude = res.latitude
+        let longitude = res.longitude
+        let accuracy = res.accuracy
+        console.log("Your location is: ")
+        console.log("Lat:", latitude)
+        console.log("Long: ", longitude)
+        page.setData({
+          userLocation: {
+            latitude: latitude,
+            longitude: longitude,
+          }
+        })
+      },
+      fail: function (res) {
+        console.log("Get location failed!");
+      }
+    })
+  },
+
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo

@@ -34,6 +34,9 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    baseUrl: 'https://powerful-waters-75226.herokuapp.com/',
+    postUrl: 'location_updates.json',
+    getUrl: 'grid_cells.json',
   }
 })
