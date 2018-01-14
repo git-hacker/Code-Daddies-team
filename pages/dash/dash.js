@@ -5,14 +5,31 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    percentOfChengduExplored:'', 
+    landmarksUnlocked:'', 
+    totalLandmarks: '', 
+    userLevel:''
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    wx.request({
+      url: http://powerful-waters-75226.herokuapp.com/users/dashboard_metrics.json, 
+      method: 'get',
+      headers: {},
+      data:{}, 
+      
+      success: (res) => {
+        this.setData({
+          percentOfChengduExplored:res.percentOfChengduExplored,
+          landmarksUnlocked: res.landmarksUnlocked,
+          totalLandmarks: res.totalLandmarks
+        })
+        
+      }
+    })
+
   },
 
   /**
