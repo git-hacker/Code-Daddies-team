@@ -1,0 +1,23 @@
+<swiper class="slides" indicator-dots="true">
+
+    <swiper-item class="first slides">
+      <image src="../../assets/logos/logo.svg" class="logo"/>
+      <text class="slide-text">Explore & unlock the treasures of your city</text>
+    </swiper-item>
+
+    <swiper-item class="second slides">
+      <image class="screenshot" src="../../assets/images/mapscreenshot.png"/>
+      <text class="slide-text">The map keeps track of how much of the city you've seen.</text>
+    </swiper-item>
+
+    <swiper-item class="third slides">
+       <image class="screenshot" src="../../assets/images/dashscreenshot.jpg"/>
+      <text class="slide-text">The more you explore, the higher your level becomes. Compete with friends and uncover the city!</text>
+    </swiper-item>
+    <swiper-item class="fourth slides">
+      <!-- <text class="slide-text"></text> -->
+      <navigator class="start-text" url="/pages/dash/dash" open-type="switchTab">Start your journey today!</navigator>
+      
+    </swiper-item>
+
+</swiper>
