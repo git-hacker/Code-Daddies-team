@@ -25,7 +25,7 @@
 }
 
 .slide-text{
-  color: white;
+  color: #FFC43D;
   width: 350rpx;
   text-align: center;
   font-size: 25rpx;
@@ -41,7 +41,7 @@
 }
 
 .start-text{
-  color: white;
+  color: #FFC43D;
   padding: 20rpx;
   border: 2rpx solid white;
   border-radius: 5rpx;
