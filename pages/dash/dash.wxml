@@ -9,7 +9,7 @@
   <view class="status whitefont">
     <image class="backdrop" src="../../assets/images/backdrop.png"/>  
     <image class="user-avatar" src="../../assets/images/frida.jpg"/>
-    <image class='badge' src="../../assets/icons/badgeTourist.svg"/> 
+    <image class='badge' src="../../assets/icons/badge{{userLevel}}.svg"/> 
     <view class="stat goldfont">
       of Chengdu Unlocked
       <text class="percent-num">{{percentOfChengduExplored}}%</text>
