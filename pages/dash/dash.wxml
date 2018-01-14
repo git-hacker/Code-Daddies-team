@@ -12,7 +12,7 @@
     <image class='badge' src="../../assets/icons/badgeTourist.svg"/> 
     <view class="stat goldfont">
       of Chengdu Unlocked
-      <text class="percent-num">%</text>
+      <text class="percent-num">{{percentOfChengduExplored}}%</text>
       <!-- <image class="percent" src="../../assets/images/percent.svg"/> -->
     </view>
   </view>
