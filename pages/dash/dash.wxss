@@ -3,34 +3,60 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   font-size: 30rpx;
   padding: 15rpx;
   background-color: #FFC43D;
   position: relative;
-  height: 60rpx;
+  height: 100rpx;
+  /* text-align: center; */
 }
 
-.user-avatar {
-  border-radius: 50%;
-  width: 130rpx;
-  height: 130rpx;
-  margin: 5rpx 20rpx;
-  position: absolute;
-  bottom: -65rpx;
-  left: 10rpx;
-}
-
-.journey-status {
-  position: absolute;
-  right: 90rpx;
+.journey-greet {
   margin: 5rpx 15rpx; 
 }
 
-/* - - - - - - - - - - - - - - MAP VIEW */
+/* - - - - - - - - - - - - - -STATUS BADGE */
 
-.city-map {
-  background-color: black;
-  height: 65vh;
+.status{
+  height: 90vh;
+  display: flex;
+  position: relative;
+  text-align: center;
+}
+
+.user-avatar {
+  position: absolute;
+  top: 50rpx;
+  bottom: 0rpx;
+  left: 0;
+  right: 0;
+  border-radius: 50%;
+  width: 140rpx;
+  height: 140rpx;
+  margin: 0 auto;
+  margin-bottom: 50rpx;
+  border: 8rpx solid #FFC43D;
+  display: block;
+}
+
+.badge {
+  position: absolute;
+  display: block;
+  bottom: 50rpx;
+  top: 220rpx;
+  right: 0rpx;
+  left:0rpx;
+  height: 450rpx;
+  width: 450rpx;
+  margin: 0 auto;
+  margin-top: 50rpx;
+}
+
+.backdrop {
+  height: 100%;
+  width: 100vw;
+  z-index: 0;
 }
 
 /* - - - - - - - - - - - - - - - - STATS */
@@ -40,17 +66,32 @@
   height: 150rpx;
   display: flex;
   flex-direction: row; 
+  background-color: #3A074F;
 }
 
 .stat {
-  background-color: aqua;
-  width: 50%;
-  border: 2rpx solid black;
-  font-size: 30rpx;
+  /* background-color: aqua; */
+  width: 100%;
+  /* border: 2rpx solid black; */
+  font-size: 20rpx;
   font-weight: bold;
-  text-align: center;
   padding: 10rpx;
+  position: absolute; 
+  bottom: 70rpx;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+}
 
+.percent {
+  width: 200rpx;
+  height: 200rpx;
+  margin: 0 auto;
+  padding: 20rpx;
+}
+
+.percent-num{
+  font-size: 70rpx;
 }
 
 /* - - - - - - - - - - - - FONT COLORS */
