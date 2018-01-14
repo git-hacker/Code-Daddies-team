@@ -34,11 +34,7 @@ Page({
 
   onLoad: function () {
     let fogs = this.data.fogs
-    var i = 0;
-    var markers = []
-    for(i; i <= fogs.length; i++) {
-      markers.push(fogs[i])
-    }
+
     let page = this
     // this.setData({markers: markers})
 
@@ -47,21 +43,35 @@ Page({
       method: 'get',
       url: app.globalData.baseUrl + app.globalData.getUrl,
       success: function (res) {
-        let fogs = []
-        fogs.push(res.data)
+        let markerFogs = [];
+        console.log("Please wait I'm extremely slow");
+        for(var i = 0; i < res.data.length; i++) {
+          console.log(res.data[i]);
+          if(!res.data[i].visible) {
+            markerFogs.push({
+              id: res.data[i].id,
+              longitude: res.data[i].longitude,
+              latitude: res.data[i].latitude,
+              iconPath: "../../assets/images/fog.png",
+              width: 75,
+              height: 90,
+              anchor: { x: 0.5, y: 0.5 }
+            })
+          }
+        }
         console.log(res.data)
         page.setData({
-          fogs: fogs
-        })
+          markers: markerFogs
+        });
       }
     })
-      setInterval(this.postCurrentLocation, 15000)
+      setInterval(this.postCurrentLocation, 5000)
 
   },
 
   postCurrentLocation: function() {
     // POST request to send those coordinates
-    this.getUserCurrentLocation
+    this.getUserCurrentLocation();
     console.log("User's current location: ")
     console.log(this.data.userLocation)
     wx.request({
@@ -96,6 +106,9 @@ Page({
             longitude: longitude,
           }
         })
+      },
+      fail: function (res) {
+        console.log("Get location failed!");
       }
     })
   },
