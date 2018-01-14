@@ -18,6 +18,7 @@ Page({
       method: 'get',
       headers: {},
       data:{}, 
+      
       success: (res) => {
         this.setData({
           percentOfChengduExplored:res.percentOfChengduExplored,

@@ -1,14 +1,17 @@
 
 <view class="page-wrapper">
-  <view class="top-bar purplefont">
-    <image class="user-avatar" src="../../assets/images/frida.jpg"/>
-    <view class="journey-status">
-      <text>Status: American Ninja Warrior</text>
+  <view class="top-bar purplefont">  
+    <view class="journey-greet">
+      <text>Welcome Back, Adventurer!</text>
     </view>
   </view>
-  <view class="city-map whitefont">
-    <text>THIS THE MAP</text>
+
+  <view class="status whitefont">
+      <image class="backdrop" src="../../assets/images/backdrop.png"/>  
+     <image class="user-avatar" src="../../assets/images/frida.jpg"/>
+    <image class='badge' src="../../assets/icons/badgeTourist.svg"/> 
   </view>
+
   <view class="user-stats">
     <view class="stat">
       <text class="purplefont">% of Chengdu unlocked</text>
@@ -17,4 +20,5 @@
       <text class="purplefont">Landmarks unlocked</text>
     </view>
   </view>
+
 </view>
