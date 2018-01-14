@@ -12,9 +12,10 @@
 
 .user-avatar {
   border-radius: 50%;
-  width: 130rpx;
-  height: 130rpx;
+  width: 140rpx;
+  height: 140rpx;
   margin: 5rpx 20rpx;
+  margin-left: 30rpx;
   position: absolute;
   bottom: -65rpx;
   left: 10rpx;
@@ -30,7 +31,7 @@
 
 .city-map {
   background-color: black;
-  height: 65vh;
+  height: 79vh;
 }
 
 /* - - - - - - - - - - - - - - - - STATS */

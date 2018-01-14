@@ -11,20 +11,20 @@
     "navigationBarTextStyle":"white"
   },
   "tabBar": {
-    "color": "white",
-    "selectedColor": "#B80C09",
-    "backgroundColor": "##3A074F",
+    "color": "#CCCCCC",
+    "selectedColor": "#FFC43D",
+    "backgroundColor": "#3A074F",
     "borderStyle": "white",
     "list": [{
         "pagePath": "pages/index/index",
         "iconPath": "assets/icons/journey-grey.png",
-        "selectedIconPath": "assets/icons/journey-selected.png",
+        "selectedIconPath": "assets/icons/journey-select.png",
         "text": "Journey"
       },{
         "pagePath": "pages/dash/dash",
-        "iconPath": "assets/icons/profile-grey.png",
-        "selectedIconPath": "assets/icons/profile-selected.png",
-        "text": "Profile"
+        "iconPath": "assets/icons/dash-grey.png",
+        "selectedIconPath": "assets/icons/dash-select.png",
+        "text": "Dashboard"
     }]
   }
 }
