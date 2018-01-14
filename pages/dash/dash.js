@@ -15,16 +15,16 @@ Page({
    */
   onLoad: function (options) {
     wx.request({
-      url: http://powerful-waters-75226.herokuapp.com/users/dashboard_metrics.json, 
+      url: 'http://powerful-waters-75226.herokuapp.com/users/dashboard_metrics.json', 
       method: 'get',
       headers: {},
       data:{}, 
       
       success: (res) => {
         this.setData({
-          percentOfChengduExplored:res.percentOfChengduExplored,
-          landmarksUnlocked: res.landmarksUnlocked,
-          totalLandmarks: res.totalLandmarks
+          percentOfChengduExplored:res.data.percentOfChengduExplored,
+          landmarksUnlocked: res.data.landmarksUnlocked,
+          totalLandmarks: res.data.totalLandmarks
         })
         
       }
