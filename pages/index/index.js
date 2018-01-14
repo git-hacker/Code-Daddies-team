@@ -20,6 +20,35 @@ Page({
     },
     fogs: [ ],
     markers: [ ],
+    landmarks: [
+      {
+        id: 900000,
+        title: 'Panda center',
+        latitude: 30.59396743774414,
+        longitude: 104.05834197998047,
+        iconPath: "../../assets/icons/landmarkUnlock.png",
+        width: 50,
+        height: 50,
+      },
+      {
+        id: 900001,
+        title: 'Sweet park',
+        latitude: 30.645829,
+        longitude: 104.048147,
+        iconPath: "../../assets/icons/landmarkLock.png",
+        width: 50,
+        height: 50,
+      },
+      {
+        id: 900002,
+        title: 'Wuhouci - One of the best temples in Chengdu!',
+        latitude: 30.639552,
+        longitude: 104.046473,
+        iconPath: "../../assets/icons/landmarkUnlock.png",
+        width: 50,
+        height: 50,
+      }
+    ],
   },
   //事件处理函数
   bindViewTap: function() {
@@ -63,7 +92,7 @@ Page({
           }
         }
         page.setData({
-          markers: markerFogs,
+          markers: markerFogs.concat(page.data.landmarks),
         });
         page.postCurrentLocation();
       }
@@ -91,7 +120,7 @@ Page({
         // if we've now visited some new grid cells, we should remove
         // those grid cells from the map overlays
         let markerFogs = this.data.markers;
-        let previousMarkerCount = 0;
+        let previousMarkerCount = markerFogs.length;
         for(let i = 0; i < res.data.visited_grid_cells.length; i++) {
           let gridCellIdToRemove = res.data.visited_grid_cells[i];
           console.log("You've visited grid cell id: " + gridCellIdToRemove + " so that fog will be removed");
