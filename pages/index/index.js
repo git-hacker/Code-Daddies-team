@@ -55,9 +55,10 @@ Page({
               iconPath: "../../assets/images/fog.png",
               width: 75,
               height: 90,
-              anchor: { x: 0.5, y: 0.5 }
-            })
+              anchor: { x: 0.5, y: 0.5 },
+            });
           }
+
         }
         console.log(res.data)
         page.setData({
@@ -78,8 +79,24 @@ Page({
       method: 'post',
       data: this.data.userLocation,
       url: app.globalData.baseUrl + app.globalData.postUrl,
-      success: function(res) {
-        console.log(res)
+      success: (res) => {
+        console.log(res);
+        console.log("Checking if we need to remove any fogs after location update...");
+
+        // if we've now visited some new grid cells, we should remove
+        // those grid cells from the map overlays
+        let markerFogs = this.data.markers;
+        for(let i = 0; i < res.data.visited_grid_cells.length; i++) {
+          let gridCellIdToRemove = res.data.visited_grid_cells[i];
+          console.log("You've visited grid cell id: " + gridCellIdToRemove + " so that fog will be removed");
+
+          markerFogs = markerFogs.filter((fog) => {
+            return fog.id !== gridCellIdToRemove;
+          });
+        }
+        this.setData({
+          markers: markerFogs
+        })
       }
     })
   },
