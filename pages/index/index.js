@@ -9,10 +9,10 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     map: {
-        latitude: 30.575614,
-        longitude: 104.055387,
+        latitude: 0,
+        longitude: 0,
         accuracy: 0,
-        showlocation: true,
+        // showlocation: true,
     },
     userLocation: {
       latitude: 0,
@@ -32,13 +32,17 @@ Page({
   // get user info/list of visited grids from Rails API
   // show user marker on current location,
 
+  // get users current location
+  // set that as the center of the map
+  // grab fog markers put them into markerfogs array
+  // set 
   onLoad: function () {
     let fogs = this.data.fogs
 
     let page = this
-    // this.setData({markers: markers})
-    this.setMapCenterAsUsersCurrentLocation()
-    console.log(fogs)
+
+    this.getUserCurrentLocation(true);
+
     wx.request({
       method: 'get',
       url: app.globalData.baseUrl + app.globalData.getUrl,
@@ -46,45 +50,36 @@ Page({
         let markerFogs = [];
         console.log("Please wait I'm extremely slow");
         for(var i = 0; i < res.data.length; i++) {
-          console.log(res.data[i]);
           if(!res.data[i].visible) {
             markerFogs.push({
               id: res.data[i].id,
               longitude: res.data[i].longitude,
               latitude: res.data[i].latitude,
               iconPath: "../../assets/images/fog.png",
-              width: 75,
-              height: 90,
+              width: 50,
+              height: 50,
               anchor: { x: 0.5, y: 0.5 },
             });
           }
-
         }
-        console.log(res.data)
         page.setData({
           markers: markerFogs,
         });
+        page.postCurrentLocation();
       }
     })
-    setInterval(this.postCurrentLocation, 5000)
+    this.postCurrentLocation();
+
+    setInterval(this.postCurrentLocation, 15000)
   },
 
   setMapCenterAsUsersCurrentLocation: function(lat, long) {
-    console.log('FUCK')
-    this.setData({
-      map: {
-        latitude: lat,
-        longitude: long
-      }
-    })
-    console.log(this.data.map)
+    this.getUserCurrentLocation(true);
   },
 
   postCurrentLocation: function() {
     // POST request to send those coordinates
-    this.getUserCurrentLocation();
-    console.log("User's current location: ")
-    console.log(this.data.userLocation)
+    this.getUserCurrentLocation(false);
     wx.request({
       method: 'post',
       data: this.data.userLocation,
@@ -96,6 +91,7 @@ Page({
         // if we've now visited some new grid cells, we should remove
         // those grid cells from the map overlays
         let markerFogs = this.data.markers;
+        let previousMarkerCount = 0;
         for(let i = 0; i < res.data.visited_grid_cells.length; i++) {
           let gridCellIdToRemove = res.data.visited_grid_cells[i];
           console.log("You've visited grid cell id: " + gridCellIdToRemove + " so that fog will be removed");
@@ -104,32 +100,43 @@ Page({
             return fog.id !== gridCellIdToRemove;
           });
         }
-        this.setData({
-          markers: markerFogs
-        })
+        if(previousMarkerCount !== markerFogs.length) {
+          this.setData({
+            markers: markerFogs
+          });
+        }
       }
     })
   },
 
 
   
-  getUserCurrentLocation: function () {
+  getUserCurrentLocation: function (centerOnLocation) {
     let page = this
 
     wx.getLocation({
+      type: 'gcj02',
       success: function (res) {
-        type: 'wgs84',
-        console.log("Here's the response data: ")
         let latitude = res.latitude
         let longitude = res.longitude
-
-        page.setMapCenterAsUsersCurrentLocation(latitude, longitude)
         page.setData({
           userLocation: {
             latitude: latitude,
             longitude: longitude,
           }
         })
+
+        console.log("User's current location: ")
+        console.log(page.data.userLocation)
+
+        if(centerOnLocation) {
+          page.setData({
+            map: {
+              latitude: latitude,
+              longitude: longitude
+            }
+          })
+        }
       },
       fail: function (res) {
         console.log("Get location failed!");
