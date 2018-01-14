@@ -42,4 +42,7 @@
 
 .start-text{
   color: white;
+  padding: 20rpx;
+  border: 2rpx solid white;
+  border-radius: 5rpx;
 }
