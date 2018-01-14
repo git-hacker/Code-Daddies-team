@@ -18,19 +18,7 @@ Page({
       latitude: 0,
       longitude: 0,
     },
-    fogs: [
-      { 
-        "id": 239, 
-        "longitude": 104.055387, 
-        "latitude": 30.575614 
-      }, 
-      { 
-        "id": 240, 
-        "longitude": 104.058556, 
-        "latitude": 30.575614 
-      },
-      { "id": 239, "longitude": 104.055387, "latitude": 30.575614 }, { "id": 240, "longitude": 104.058556, "latitude": 30.575614 }, { "id": 241, "longitude": 104.061725, "latitude": 30.575614 }, { "id": 242, "longitude": 104.064894, "latitude": 30.575614 }, { "id": 243, "longitude": 104.068063, "latitude": 30.575614 }, { "id": 244, "longitude": 104.071232, "latitude": 30.575614 }, { "id": 245, "longitude": 104.074401, "latitude": 30.575614 }, { "id": 246, "longitude": 104.07757, "latitude": 30.575614 }, { "id": 247, "longitude": 104.080739, "latitude": 30.575614 }, { "id": 248, "longitude": 104.083908, "latitude": 30.575614 }, { "id": 249, "longitude": 104.087077, "latitude": 30.575614 }, { "id": 250, "longitude": 104.090246, "latitude": 30.575614 }, { "id": 251, "longitude": 104.093415, "latitude": 30.575614 }, { "id": 252, "longitude": 104.096584, "latitude": 30.575614 }, { "id": 253, "longitude": 104.055387, "latitude": 30.578683 }, { "id": 254, "longitude": 104.058556, "latitude": 30.578683 }, { "id": 255, "longitude": 104.061725, "latitude": 30.578683 }, { "id": 256, "longitude": 104.064894, "latitude": 30.578683 }, { "id": 257, "longitude": 104.068063, "latitude": 30.578683 }, { "id": 258, "longitude": 104.071232, "latitude": 30.578683 }, { "id": 259, "longitude": 104.074401, "latitude": 30.578683 }, { "id": 260, "longitude": 104.07757, "latitude": 30.578683 }, { "id": 261, "longitude": 104.080739, "latitude": 30.578683 }, { "id": 262, "longitude": 104.083908, "latitude": 30.578683 }, { "id": 263, "longitude": 104.087077, "latitude": 30.578683 }, { "id": 264, "longitude": 104.090246, "latitude": 30.578683 }, { "id": 265, "longitude": 104.093415, "latitude": 30.578683 }, { "id": 266, "longitude": 104.096584, "latitude": 30.578683 }, { "id": 267, "longitude": 104.055387, "latitude": 30.581752 }, { "id": 268, "longitude": 104.058556, "latitude": 30.581752 }
-      ],
+    fogs: [ ],
     markers: [ ],
   },
   //事件处理函数
@@ -51,13 +39,21 @@ Page({
     for(i; i <= fogs.length; i++) {
       markers.push(fogs[i])
     }
+    let page = this
     // this.setData({markers: markers})
 
     console.log(fogs)
     wx.request({
       method: 'get',
       url: app.globalData.baseUrl + app.globalData.getUrl,
-
+      success: function (res) {
+        let fogs = []
+        fogs.push(res.data)
+        console.log(res.data)
+        page.setData({
+          fogs: fogs
+        })
+      }
     })
       setInterval(this.postCurrentLocation, 15000)
 
@@ -77,6 +73,8 @@ Page({
       }
     })
   },
+
+
   
   getUserCurrentLocation: function () {
     let page = this
