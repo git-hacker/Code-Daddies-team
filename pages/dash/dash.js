@@ -8,7 +8,8 @@ Page({
     percentOfChengduExplored:'', 
     landmarksUnlocked:'', 
     totalLandmarks: '', 
-    userLevel:''
+    userLevel:'', 
+    userLevel: 'Tourist'
   },
   /**
    * 生命周期函数--监听页面加载
@@ -26,10 +27,27 @@ Page({
           landmarksUnlocked: res.data.landmarksUnlocked,
           totalLandmarks: res.data.totalLandmarks
         })
-        
+        this.badgeLevel();
       }
     })
 
+  },
+
+  badgeLevel: function () {
+    if (this.data.percentOfChengduExplored > 40) {
+      this.setData({
+        userLevel: 'Wanderer'
+      })
+    } else if (this.data.percentOfChengduExplored > 60) {
+      this.setData({
+        userLevel: 'Panda'
+      })
+    } else if (this.data.percentOfChengduExplored > 80) {
+      this.setData({
+        userLevel: 'Boss'
+      })
+    }
+    
   },
 
   /**

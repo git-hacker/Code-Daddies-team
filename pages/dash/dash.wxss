@@ -19,7 +19,7 @@
 /* - - - - - - - - - - - - - -STATUS BADGE */
 
 .status{
-  height: 90vh;
+  height: 91vh;
   display: flex;
   position: relative;
   text-align: center;
@@ -47,7 +47,7 @@
   top: 220rpx;
   right: 0rpx;
   left:0rpx;
-  height: 450rpx;
+  height: 480rpx;
   width: 450rpx;
   margin: 0 auto;
   margin-top: 50rpx;
